@@ -4,9 +4,9 @@ WORKDIR  /home/app
 
 COPY . /home/app
 
-RUN mvn clean package -U -DskipTests --settings ./m2/settings.xml
+RUN  cd function &&  mvn clean package -U -DskipTests --settings ./m2/settings.xml
 
-RUN cp /home/app/target/*.jar ./application.jar
+RUN cp /home/app/function/target/*.jar ./application.jar
 
 RUN java -Djarmode=layertools -jar application.jar extract
 
